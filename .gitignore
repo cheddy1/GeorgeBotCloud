@@ -3,6 +3,7 @@ node_modules
 /dist
 .editorconfig
 virt
+GeorgeBot.env.yml
 
 
 # local env files
