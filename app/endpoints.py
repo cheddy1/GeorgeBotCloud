@@ -1,8 +1,8 @@
 import json
 from flask import request, jsonify
 from flask_cors import cross_origin
-
 from . import app
+
 
 @app.route('/')
 @cross_origin()
@@ -12,7 +12,7 @@ def index_client():
 
 @app.route('/api/lidar', methods=['POST'])
 @cross_origin()
-def lidar_receive():
+def lidar_receive() -> json:
     content = request.json
     with open('lidar.txt', 'w') as f:
         f.write(str(content))

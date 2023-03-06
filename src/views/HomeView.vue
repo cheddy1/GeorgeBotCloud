@@ -1,25 +1,27 @@
 <template>
-  <div class="container-fluid h-100">
-    <div class="row h-100">
-      <div class="col-7">
-        <div class="row" style="margin-top: 3vh;">
-          <div class="col-2">
-            <img alt="george logo" style="width: 10vh;" src="../assets/logo.png">
-          </div>
-          <div class="col">
-            Welcome to GeorgeBot
-          </div>
-        </div>
-        <div class="render-box">
+  <div class="container-fluid no-mp">
+    <div class="row no-mp">
+      <div class="col no-mp">
+        <div class="top-left box">
           <RenderMap/>
+          <div class="loading-text">Waiting on render...</div>
         </div>
       </div>
-      <div class="col">
-        <div class="feed-title">
-          Data Feed
-        </div>
-        <div class="feed-box">
+      <div class="col no-mp">
+        <div class="top-right box">
           <LiveFeed/>
+        </div>
+      </div>
+    </div>
+    <div class="row no-mp">
+      <div class="col no-mp">
+        <div class="bot-left box">
+          <div class="loading-text"> Waiting on webcam data...</div>
+        </div>
+      </div>
+      <div class="col no-mp">
+        <div class="bot-right box">
+          <div class="loading-text">Waiting on control data...</div>
         </div>
       </div>
     </div>
@@ -42,28 +44,63 @@ export default {
 </script>
 
 <style>
-.feed-box {
-  margin-bottom: 8vh;
-  margin-right: 3vw;
-  height: 78vh;
-  border: 2px;
-  border-color: whitesmoke;
-  border-style: solid;
+.top-right {
+  border-left: 0px;
+  border-bottom: 2px;
+  border-right: 0px;
+  border-top: 0px;
   overflow: auto;
 }
 
+.top-left {
+  border-left: 0px;
+  border-bottom: 2px;
+  border-right: 2px;
+  border-top: 0px;
+}
+
+.bot-right {
+  border: 0px;
+  width: 50%;
+  position: absolute;
+  bottom: 0px;
+}
+
+.bot-left {
+  width: 50%;
+  border-left: 0px;
+  border-bottom: 0px;
+  border-right: 2px;
+  border-top: 0px;
+  position: absolute;
+  bottom: 0px;
+}
+
 .feed-title {
-  margin-top: 10vh;
   font-size: 20px;
   color: whitesmoke;
 }
-.render-box {
-  /* margin-bottom: 8vh;
-  margin-right: 3vw; */
-  margin-top: 1vh;
-  height: 75vh;
-  border: 2px;
-  border-color: whitesmoke;
+
+.box {
+  height: 46vh;
+  border-color: #494949;
   border-style: solid;
+}
+
+.no-mp {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.loading-text {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  color: #7393B3;
+  opacity: 70%;
+  font-size: 22px;
 }
 </style>

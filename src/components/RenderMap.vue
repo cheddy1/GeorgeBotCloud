@@ -1,7 +1,6 @@
 <template lang="html">
 
   <section class="render-map">
-    <h1>Insert da render here!</h1>
   </section>
 
 </template>
