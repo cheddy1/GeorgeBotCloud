@@ -1,24 +1,39 @@
-# client
+Welcome to GeorgeBot Cloud, the web UI and backend that supports GeorgeBot, a lidar based room-scanning robot.
 
-## Project setup
+## Make sure you have these installed first
+```
+Python 3.9
+Node (Currently using v14.15.4)
+npm (Currently using v6.14.10)
+```
+
+## Clone the repo
+```
+git clone https://github.com/cheddy1/GeorgeBotCloud.git
+```
+
+### Create a virtual enviroment
+```
+pip install virtualenv
+virtualenv venv
+```
+
+### Install Python dependencies
+```
+pip install -r requirements.txt
+```
+
+### Install JS dependencies
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Deploy the back end locally
+```
+flask run
+```
+
+### Deploy the front end locally
 ```
 npm run serve
 ```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
