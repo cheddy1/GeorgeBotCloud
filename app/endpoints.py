@@ -1,7 +1,9 @@
 import json
+import flask
 from flask import request, jsonify
 from flask_cors import cross_origin
 from . import app
+from .sse_helper import announcer, format_sse
 
 
 @app.route('/')
@@ -27,3 +29,24 @@ def lidar_display():
     response = jsonify(data)
     response.content_type = 'application/json'
     return response
+
+
+@app.route('/api/data', methods=['POST'])
+@cross_origin()
+def data_receive():
+    content = request.json
+
+    msg = format_sse(data=content)
+    announcer.announce(msg=msg)
+    return {}, 200
+
+
+@app.route('/listen', methods=['GET'])
+def listen():
+    def stream():
+        messages = announcer.listen()  # returns a queue.Queue
+        while True:
+            msg = messages.get()  # blocks until a new message arrives
+            yield msg
+
+    return flask.Response(stream(), mimetype='text/event-stream')
