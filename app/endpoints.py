@@ -4,6 +4,7 @@ from flask import request, jsonify
 from flask_cors import cross_origin
 from . import app
 from .sse_helper import announcer, format_sse
+from .database import execute_sql, temp_store
 
 
 @app.route('/')
@@ -50,3 +51,10 @@ def listen():
             yield msg
 
     return flask.Response(stream(), mimetype='text/event-stream')
+
+
+@app.route('/api/top', methods=['GET'])
+def ten_most_recent():
+    temp_store()
+    res = execute_sql("SELECT stamp FROM frames ORDER BY stamp DESC LIMIT 10", 'select').fetchall()
+    return str(res)

@@ -5,7 +5,3 @@ app = Flask(__name__, static_url_path='')
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 from .endpoints import *
-from .database import db_init
-
-db_init()
-
