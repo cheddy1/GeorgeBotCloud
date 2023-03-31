@@ -7,10 +7,10 @@
 </template>
 
 <script>
-
-import axios from 'axios';
+// import axios from 'axios';
 
 const baseUrl = process.env.NODE_ENV === 'production' ? 'http://george-env.eba-trrm37cn.us-east-2.elasticbeanstalk.com/' : 'http://127.0.0.1:5000/';
+
 export default {
   name: 'live-feed',
   props: {
@@ -26,10 +26,15 @@ export default {
   },
   methods: {
     fetchData() {
-      axios.get(`${baseUrl}api/lidar`)
-        .then((response) => {
-          this.feedData = response.data;
-        });
+      this.$sse.create(`${baseUrl}listen`)
+        .on('message', (msg) => { this.feedData = msg; })
+        .on('error', (err) => console.error('Failed to parse or lost connection:', err))
+        .connect()
+        .catch((err) => console.error('Failed make initial connection:', err));
+      // axios.get(`${baseUrl}api/lidar`)
+      //   .then((response) => {
+      //     this.feedData = response.data;
+      //   });
     },
   },
   computed: {
