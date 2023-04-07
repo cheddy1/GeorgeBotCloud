@@ -1,8 +1,6 @@
 <template lang="html">
-
   <section class="render-map">
   </section>
-
 </template>
 
 <script lang="js">
@@ -29,7 +27,6 @@ export default {
 </script>
 
 <style scoped>
-  .render-map {
-
-  }
+.render-map {
+}
 </style>

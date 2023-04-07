@@ -1,9 +1,11 @@
 <template lang="html">
-
   <section class="live-feed">
-    >  {{ feedData }}
+    <ul id="test" class="demo" style="list-style-type: >">
+      <li v-for="item in feedArray" :key="item">
+        {{ item }}
+      </li>
+    </ul>
   </section>
-
 </template>
 
 <script>
@@ -13,8 +15,7 @@ const baseUrl = process.env.NODE_ENV === 'production' ? 'http://george-env.eba-t
 
 export default {
   name: 'live-feed',
-  props: {
-  },
+  props: {},
   mounted() {
     // setInterval(this.fetchData, 3000); // save reference to the interval
     this.fetchData();
@@ -22,12 +23,13 @@ export default {
   data() {
     return {
       feedData: 'Some fun data thing would go here.\n Maybe',
+      feedArray: ['Waiting for controller feed...'],
     };
   },
   methods: {
     fetchData() {
       this.$sse.create(`${baseUrl}listen`)
-        .on('message', (msg) => { this.feedData = msg; })
+        .on('message', (msg) => { this.feedArrayHandler(msg); })
         .on('error', (err) => console.error('Failed to parse or lost connection:', err))
         .connect()
         .catch((err) => console.error('Failed make initial connection:', err));
@@ -35,6 +37,18 @@ export default {
       //   .then((response) => {
       //     this.feedData = response.data;
       //   });
+    },
+    feedArrayHandler(rawLog) {
+      const log = rawLog.replace('{\'log\': \'', '').replace('\'}', '');
+      if (this.feedArray.length > 100) {
+        this.feedArray.shift();
+        this.feedArray.push(log);
+      } else {
+        if (this.feedArray[0] === 'Waiting for controller feed...') {
+          this.feedArray = [];
+        }
+        this.feedArray.push(log);
+      }
     },
   },
   computed: {
@@ -45,10 +59,29 @@ export default {
 </script>
 
 <style scoped>
-  .live-feed {
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 5px;
-    bottom: 0;
-  }
+.live-feed {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: auto;
+}
+
+test {
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  padding-left: 16px;
+}
+
+li::before {
+  content: ">";
+  padding-right: 8px;
+}
 </style>

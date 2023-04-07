@@ -4,7 +4,7 @@
       <div class="col no-mp">
         <div class="top-left box">
           <RenderMap/>
-          <div class="loading-text">Waiting on render...</div>
+          <div class="loading-text"> Waiting on render...</div>
         </div>
       </div>
       <div class="col no-mp">
@@ -61,18 +61,16 @@ export default {
 
 .bot-right {
   border: 0px;
-  width: 50%;
-  position: absolute;
+  width: 50vw;
   bottom: 0px;
 }
 
 .bot-left {
-  width: 50%;
+  width: 50vw;
   border-left: 0px;
   border-bottom: 0px;
   border-right: 2px;
   border-top: 0px;
-  position: absolute;
   bottom: 0px;
 }
 
@@ -85,6 +83,9 @@ export default {
   height: 46vh;
   border-color: #494949;
   border-style: solid;
+  display: flex;
+  flex-direction: column;
+
 }
 
 .no-mp {
