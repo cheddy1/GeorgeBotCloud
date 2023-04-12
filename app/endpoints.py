@@ -32,17 +32,17 @@ def lidar_display():
     return response
 
 
-@app.route('/api/data', methods=['POST'])
+@app.route('/api/data-feed', methods=['POST'])
 @cross_origin()
 def data_receive():
     content = request.json
-
-    msg = format_sse(data=content)
-    announcer.announce(msg=msg)
+    if "log" in content:
+        msg = format_sse(data=content)
+        announcer.announce(msg=msg)
     return {}, 200
 
 
-@app.route('/listen', methods=['GET'])
+@app.route('/api/data-feed', methods=['GET'])
 def listen():
     def stream():
         messages = announcer.listen()  # returns a queue.Queue
