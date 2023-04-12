@@ -4,7 +4,6 @@
       <div class="col no-mp">
         <div class="top-left box">
           <RenderMap/>
-          <div class="loading-text"> Waiting on render...</div>
         </div>
       </div>
       <div class="col no-mp">
@@ -16,12 +15,12 @@
     <div class="row no-mp">
       <div class="col no-mp">
         <div class="bot-left box">
-          <div class="loading-text"> Waiting on webcam data...</div>
+          <div class="loading-text"> Waiting on 2D data...</div>
         </div>
       </div>
       <div class="col no-mp">
         <div class="bot-right box">
-          <div class="loading-text">Waiting on control data...</div>
+          <div class="loading-text">Waiting on error logs...</div>
         </div>
       </div>
     </div>
@@ -85,7 +84,6 @@ export default {
   border-style: solid;
   display: flex;
   flex-direction: column;
-
 }
 
 .no-mp {
@@ -103,5 +101,20 @@ export default {
   color: #7393B3;
   opacity: 70%;
   font-size: 22px;
+}
+
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #cdcdcd;
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
 }
 </style>

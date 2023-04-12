@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     fetchData() {
-      this.$sse.create(`${baseUrl}listen`)
+      this.$sse.create(`${baseUrl}api/data-feed`)
         .on('message', (msg) => { this.feedArrayHandler(msg); })
         .on('error', (err) => console.error('Failed to parse or lost connection:', err))
         .connect()
@@ -60,14 +60,10 @@ export default {
 
 <style scoped>
 .live-feed {
-  padding-left: 10px;
   padding-right: 10px;
   padding-top: 5px;
-  padding-bottom: 5px;
-  margin-top: auto;
-}
-
-test {
+  padding-bottom: 10px;
+  color: whitesmoke;
 }
 
 ul {
@@ -84,4 +80,5 @@ li::before {
   content: ">";
   padding-right: 8px;
 }
+
 </style>
