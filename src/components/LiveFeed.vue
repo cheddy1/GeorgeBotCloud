@@ -1,10 +1,13 @@
 <template lang="html">
   <section class="live-feed">
-    <ul id="test" class="demo" style="list-style-type: >">
-      <li v-for="item in feedArray" :key="item">
-        {{ item }}
-      </li>
-    </ul>
+    <div v-if="isFeedEmpty" class="loading-text"> Waiting on controller data...</div>
+    <div v-else>
+      <ul class="demo" style="list-style-type: >">
+        <li v-for="item in feedArray" :key="item">
+          {{ item }}
+        </li>
+      </ul>
+    </div>
   </section>
 </template>
 
@@ -22,11 +25,14 @@ export default {
   },
   data() {
     return {
-      feedData: 'Some fun data thing would go here.\n Maybe',
-      feedArray: ['Waiting for controller feed...'],
+      isFeedEmpty: true,
+      feedArray: [],
     };
   },
   methods: {
+    initFeed() {
+      this.feed = '<ul class="demo" style="list-style-type: >"> <li v-for="item in feedArray" :key="item">{{ item }}</li></ul>';
+    },
     fetchData() {
       this.$sse.create(`${baseUrl}api/data-feed`)
         .on('message', (msg) => { this.feedArrayHandler(msg); })
@@ -40,14 +46,12 @@ export default {
     },
     feedArrayHandler(rawLog) {
       const log = rawLog.replace('{\'log\': \'', '').replace('\'}', '');
-      if (this.feedArray.length > 100) {
-        this.feedArray.shift();
-        this.feedArray.push(log);
+      this.isFeedEmpty = false;
+      if (this.feedArray.length > 50) {
+        this.feedArray.pop();
+        this.feedArray.unshift(log);
       } else {
-        if (this.feedArray[0] === 'Waiting for controller feed...') {
-          this.feedArray = [];
-        }
-        this.feedArray.push(log);
+        this.feedArray.unshift(log);
       }
     },
   },
@@ -64,6 +68,8 @@ export default {
   padding-top: 5px;
   padding-bottom: 10px;
   color: whitesmoke;
+  display: flex;
+  height: 100%;
 }
 
 ul {
