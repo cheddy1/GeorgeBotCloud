@@ -70,6 +70,8 @@ export default {
   color: whitesmoke;
   display: flex;
   height: 100%;
+  overflow: wrap;
+  word-break: break-all;
 }
 
 ul {
