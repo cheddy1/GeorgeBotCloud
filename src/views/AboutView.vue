@@ -10,7 +10,8 @@
             Using GeorgeBot, this potentially tedious process can
             be automated, saving time for the designer.
             Additionally, in case of an emergency or counter-intelligence situation,
-            GeorgeBot can be sent in to gather valuable information without risking human lives.</p>
+            GeorgeBot can be sent in to gather valuable information without risking human lives.
+            Check out out the <a href="https://github.com/Ubspy/GeorgeBot">GeorgeBot</a> and <a href="https://github.com/cheddy1/GeorgeBotCloud">GeorgeBotCloud</a> source code!</p>
             <h2>About the Team</h2>
             <p>The GeorgeBot team is comprised of four computer engineers,
             focusing on the areas outlined below.
@@ -53,12 +54,15 @@ export default {
 h2 {
     text-align: center;
     padding-top: 2vh;
+    color: whitesmoke;
+
 }
 p {
     text-align: center;
     padding-left: 5vw;
     padding-right: 5vw;
     padding-top: 2vh;
+    color: whitesmoke;
 }
 
 .pic {
@@ -68,5 +72,10 @@ p {
     justify-content: center;
     text-align: center;
     width: 65%;
+    color: whitesmoke;
+}
+
+a {
+  color: #9ec0e1;
 }
 </style>

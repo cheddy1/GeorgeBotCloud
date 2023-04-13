@@ -99,7 +99,7 @@ export default {
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: #7393B3;
+  color: #9ec0e1;
   opacity: 70%;
   font-size: 22px;
 }
