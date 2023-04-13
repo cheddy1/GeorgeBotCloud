@@ -15,12 +15,12 @@
 #app {
   color: whitesmoke;
   height: 100vh;
-  background-color: #212121;
+  background-color: #323232;
 }
 
 .nav {
   height: 8vh;
-  background-color: #494949;
+  background-color: #4b4b4b;
 }
 
 nav .navbar-nav li a{
