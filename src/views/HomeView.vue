@@ -98,6 +98,7 @@ export default {
   margin: auto;
   align-items: center;
   justify-content: center;
+  text-align: center;
   color: #7393B3;
   opacity: 70%;
   font-size: 22px;
