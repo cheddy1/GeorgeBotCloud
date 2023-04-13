@@ -36,9 +36,10 @@ def lidar_display():
 @cross_origin()
 def data_receive():
     content = request.json
-    if "log" in content:
-        msg = format_sse(data=content)
-        announcer.announce(msg=msg)
+    if len(str(content)) < 750:
+        if "log" in content:
+            msg = format_sse(data=content)
+            announcer.announce(msg=msg)
     return {}, 200
 
 
