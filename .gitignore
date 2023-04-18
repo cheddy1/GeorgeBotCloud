@@ -34,3 +34,9 @@ app/__pycache__/__init__.cpython-39.pyc
 app/__pycache__/endpoints.cpython-39.pyc
 /app/db.db
 /app/lidar_frame.json
+app/__pycache__/database.cpython-39.pyc
+app/__pycache__/sse_helper.cpython-39.pyc
+app/__pycache__/endpoints.cpython-39.pyc
+app/__pycache__/__init__.cpython-39.pyc
+app/static/*
+app/static/

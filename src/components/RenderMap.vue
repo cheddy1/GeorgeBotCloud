@@ -1,7 +1,8 @@
 <template lang="html">
-  <section class="render-map">
-    <img alt="render" class="render" src="../assets/preset_data.gif">
-  </section>
+  <div class="title">3d Render</div>
+  <div class="render">
+    <img alt="render" src="../assets/preset_data.gif">
+  </div>
 </template>
 
 <script lang="js">
@@ -18,7 +19,6 @@ export default {
     };
   },
   methods: {
-
   },
   computed: {
 
@@ -29,20 +29,11 @@ export default {
 
 <style scoped>
 
-.title {
-  display: flex;
-}
-.render-map {
-  display: flex;
-  height: 100%;
-}
-
 .render {
   display: flex;
-  margin: auto;
-  align-items: center;
   justify-content: center;
-  width: 65%;
-
+  align-items: center;
+  width: 100%;
+  padding-top: 10px;
 }
 </style>
