@@ -1,4 +1,6 @@
 import json
+import os
+
 import flask
 from flask import request, jsonify
 from flask_cors import cross_origin
@@ -36,8 +38,9 @@ def lidar_display():
 @cross_origin()
 def data_receive():
     content = request.json
-    if len(str(content)) < 750:
-        if "log" in content:
+    if "controller-log" in content or "ros-log" in content:
+        content = str(content).replace("\'", "\"")
+        if len(content) < 750:
             msg = format_sse(data=content)
             announcer.announce(msg=msg)
     return {}, 200
@@ -50,7 +53,6 @@ def listen():
         while True:
             msg = messages.get()  # blocks until a new message arrives
             yield msg
-
     return flask.Response(stream(), mimetype='text/event-stream')
 
 
@@ -59,3 +61,12 @@ def ten_most_recent():
     temp_store()
     res = execute_sql("SELECT stamp FROM frames ORDER BY stamp DESC LIMIT 10", 'select').fetchall()
     return str(res)
+
+
+@app.route('/api/3d-image', methods=['POST'])
+def image_three():
+    if request.files:
+        image = request.files['']
+        image.save(os.path.join(app.root_path, '2d.pgm'))
+    return {}, 200
+
