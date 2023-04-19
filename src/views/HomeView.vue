@@ -16,7 +16,7 @@
     <div class="row no-mp">
       <div class="col no-mp">
         <div class="bot-left box">
-          <div class="loading-text"> Waiting on 2D data...</div>
+          <div class="loading-text"> Waiting on 3D data...</div>
         </div>
       </div>
       <div class="col no-mp">
@@ -54,10 +54,6 @@ export default {
         .connect()
       // eslint-disable-next-line
         .catch((err) => console.error('Failed make initial connection:', err));
-      // axios.get(`${baseUrl}api/lidar`)
-      //   .then((response) => {
-      //     this.feedData = response.data;
-      //   });
     },
     feedArrayHandler(rawLog) {
       const jsonLog = JSON.parse(rawLog);
