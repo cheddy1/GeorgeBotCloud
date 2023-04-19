@@ -2,7 +2,7 @@ import json
 import os
 
 import flask
-from flask import request, jsonify
+from flask import request, jsonify, send_file
 from flask_cors import cross_origin
 from . import app
 from .sse_helper import announcer, format_sse
@@ -63,10 +63,15 @@ def ten_most_recent():
     return str(res)
 
 
-@app.route('/api/3d-image', methods=['POST'])
-def image_three():
+@app.route('/api/2d-image', methods=['POST'])
+def post_img_two():
     if request.files:
         image = request.files['']
-        image.save(os.path.join(app.root_path, '2d.pgm'))
+        image.save(os.path.join(app.root_path, '2d.png'))
     return {}, 200
+
+
+@app.route('/api/2d-image', methods=['GET'])
+def get_img_two():
+    return send_file(os.path.join(app.root_path, '2d.png'))
 
