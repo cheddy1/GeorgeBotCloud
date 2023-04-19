@@ -70,3 +70,8 @@ def post_img_two():
         image.save(os.path.join(app.root_path, '2d.png'))
     return {}, 200
 
+
+@app.route('/api/2d-image', methods=['GET'])
+def get_img_two():
+    return send_file(os.path.join(app.root_path, '2d.png'))
+
