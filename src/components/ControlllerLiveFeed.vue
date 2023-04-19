@@ -13,7 +13,6 @@
 </template>
 
 <script>
-// import axios from 'axios';
 
 export default {
   name: 'controller-live-feed',
@@ -22,7 +21,6 @@ export default {
     'isFeedEmpty',
   ],
   mounted() {
-    // setInterval(this.fetchData, 3000); // save reference to the interval
   },
   methods: {
   },

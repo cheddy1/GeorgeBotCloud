@@ -22,7 +22,6 @@ export default {
     'isFeedEmpty',
   ],
   mounted() {
-    // setInterval(this.fetchData, 3000); // save reference to the interval
   },
   methods: {
   },
