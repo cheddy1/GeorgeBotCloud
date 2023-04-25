@@ -28,12 +28,12 @@ pip install -r requirements.txt
 npm install
 ```
 
-### Deploy the back end locally
+### Run the backend locally
 ```
-flask run
+python application.py
 ```
 
-### Deploy the front end locally
+### Run the frontend locally
 ```
 npm run serve
 ```
