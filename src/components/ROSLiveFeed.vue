@@ -38,7 +38,6 @@ export default {
     color: whitesmoke;
     height: 100%;
     overflow: wrap;
-    word-break: break-all;
 }
 
 ul {

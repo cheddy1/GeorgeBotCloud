@@ -40,7 +40,7 @@ export default {
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding-top: 10px;
+  padding-top: 25px;
 }
 
 .render {

@@ -9,7 +9,7 @@
       <div class="col no-mp">
         <div class="top-right box">
           <!-- eslint-disable-next-line max-len -->
-          <ControlllerLiveFeed :feedArray="controllerFeedArray" :isFeedEmpty="controllerIsFeedEmpty"/>
+          <ControllerLiveFeed :feedArray="controllerFeedArray" :isFeedEmpty="controllerIsFeedEmpty"/>
         </div>
       </div>
     </div>
@@ -29,7 +29,7 @@
 </template>
 <script>
 // @ is an alias to /src
-import ControlllerLiveFeed from '@/components/ControlllerLiveFeed.vue';
+import ControllerLiveFeed from '@/components/ControllerLiveFeed.vue';
 import RenderMap from '@/components/RenderMap.vue';
 import ROSLiveFeed from '@/components/ROSLiveFeed.vue';
 
@@ -38,7 +38,7 @@ const baseUrl = process.env.NODE_ENV === 'production' ? 'http://george-env.eba-t
 export default {
   name: 'HomeView',
   components: {
-    ControlllerLiveFeed,
+    ControllerLiveFeed,
     RenderMap,
     ROSLiveFeed,
   },
@@ -47,7 +47,7 @@ export default {
   },
   methods: {
     fetchData() {
-      this.$sse.create(`${baseUrl}api/data-feed`)
+      this.$sse.create(`${baseUrl}api/data-feed-receive`)
         .on('message', (msg) => { this.feedArrayHandler(msg); })
       // eslint-disable-next-line
         .on('error', (err) => console.error('Failed to parse or lost connection:', err))
@@ -56,22 +56,27 @@ export default {
         .catch((err) => console.error('Failed make initial connection:', err));
     },
     feedArrayHandler(rawLog) {
-      const jsonLog = JSON.parse(rawLog);
+      const jsonLog = JSON.parse(rawLog.replace(/'/g, '"'));
+      let log;
       if ('controller-log' in jsonLog) {
         this.controllerIsFeedEmpty = false;
+        log = JSON.stringify(jsonLog['controller-log']);
+        log = log.replace(/{|}|"/g, '').replace(/:/g, ': ').replace(/,/g, ', ');
         if (this.controllerFeedArray.length > 50) {
           this.controllerFeedArray.pop();
-          this.controllerFeedArray.unshift(jsonLog['controller-log']);
+          this.controllerFeedArray.unshift(log);
         } else {
-          this.controllerFeedArray.unshift(jsonLog['controller-log']);
+          this.controllerFeedArray.unshift(log);
         }
       } else {
         this.rosIsFeedEmpty = false;
+        log = JSON.stringify(jsonLog['ros-log']);
+        log = log.replace(/{|}|"/g, '').replace(/:/g, ': ').replace(/,/g, ', ');
         if (this.rosFeedarray.length > 50) {
           this.rosFeedarray.pop();
-          this.rosFeedarray.unshift(jsonLog['ros-log']);
+          this.rosFeedarray.unshift(log);
         } else {
-          this.rosFeedarray.unshift(jsonLog['ros-log']);
+          this.rosFeedarray.unshift(log);
         }
       }
       this.isFeedEmpty = false;
