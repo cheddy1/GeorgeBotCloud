@@ -19,6 +19,7 @@
             sensors and motors
             <br><b>George</b> - LiDAR, 3D SLAM algorithm
             <br><b>Christian</b> - AWS Elastic Beanstalk configuration, web server
+            backend and frontend
             <br><b>Mitchell</b> - Robot drive train, motor controller, chassis
             </p>
         </div>
@@ -26,14 +27,14 @@
       <div class="row no-mp">
         <div class="col no-mp">
             <figure class="pic">
-                <img src="../assets/preset_data.gif" alt="robot"/>
-                <figcaption> INSERT ROBOT PIC HERE </figcaption>
+                <img class="bot" src="../assets/GeorgeBot.png" alt="robot"/>
+                <figcaption> GeorgeBot </figcaption>
             </figure>
         </div>
         <div class="col no-mp">
             <figure class="pic">
-                <img src="../assets/preset_data.gif" alt="team"/>
-                <figcaption> INSERT TEAM PIC HERE </figcaption>
+                <img class="team" src="../assets/team.png" alt="team"/>
+                <figcaption> Team GeorgeBot </figcaption>
             </figure>
         </div>
       </div>
@@ -66,7 +67,7 @@ p {
 }
 
 .pic {
-    padding-top: 4vh;
+    padding-top: 1vh;
     margin: auto;
     align-items: center;
     justify-content: center;
@@ -78,4 +79,15 @@ p {
 a {
   color: #9ec0e1;
 }
+
+.bot {
+  width: 66%;
+  height: 30vh;
+}
+
+.team {
+  width: 80%;
+  height: 30vh
+}
+
 </style>
