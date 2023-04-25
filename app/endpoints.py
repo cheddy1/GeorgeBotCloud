@@ -2,7 +2,6 @@ import json
 import os
 
 import flask
-import requests
 from flask import request, jsonify, send_file
 from flask_cors import cross_origin
 from . import app
@@ -54,19 +53,6 @@ def listen():
             yield msg
     return flask.Response(stream(), mimetype='text/event-stream')
 
-
-@app.route('/test', methods=['GET'])
-def test():
-    controller_json = r'{"controller-log": {"left_stick_coords:": [0.032227545976638794, 0.018768884241580963], ' \
-                      r'"left_stick_down": false, "right_stick_coords": [0.027527695521712303, 0.0], ' \
-                      r'"right_stick_down": false, "axis_left_trigger": 0.016418958082795143, "axis_right_trigger": ' \
-                      r'0.0, "left_bumper": false, "right_bumper": false, "button_a": false, "button_b": false, ' \
-                      r'"button_x": false, "button_y": false, "start": false, "select": false, "menu": false}} '
-    headers = {"Content-Type": 'application/json'}
-
-    # Once it's fully JSON'd
-    requests.post("http://george-env.eba-trrm37cn.us-east-2.elasticbeanstalk.com/api/data-feed", headers=headers, data=json.dumps(controller_json))
-    return {}, 200
 
 @app.route('/api/top', methods=['GET'])
 def ten_most_recent():
