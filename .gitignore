@@ -40,3 +40,4 @@ app/__pycache__/endpoints.cpython-39.pyc
 app/__pycache__/__init__.cpython-39.pyc
 app/static/*
 app/static/
+app/static/index.html
