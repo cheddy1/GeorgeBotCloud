@@ -1,9 +1,9 @@
 <template lang="html">
   <!-- eslint-disable-next-line -->
-  <div class="title" style="padding-top: 9px;" @click="updateImg();">2D Render</div>
+  <div class="title" style="padding-top: 9px;" @click="checkIntervalHandler();">2D Render</div>
   <div class="render-box">
     <!-- eslint-disable-next-line -->
-    <img @click="updateImg();" alt="render" class="render" :src="imageUrl">
+    <img @click="checkIntervalHandler();" alt="render" class="render" :src="imageUrl">
   </div>
 </template>
 
@@ -15,14 +15,30 @@ export default {
   name: 'render-map',
   props: [],
   mounted() {
-    // setInterval(this.updateImg, 1000);
   },
   data() {
     return {
       imageUrl: origUrl,
+      interval: setInterval(this.updateImg, 5010),
+      checkInterval: false,
     };
   },
   methods: {
+    checkIntervalHandler() {
+      if (this.checkInterval) {
+        this.startUpdate();
+        this.checkInterval = false;
+      } else {
+        this.stopUpdate();
+        this.checkInterval = true;
+      }
+    },
+    startUpdate() {
+      this.interval = setInterval(this.updateImg, 5010);
+    },
+    stopUpdate() {
+      clearInterval(this.interval);
+    },
     updateImg() {
       this.imageUrl = `${origUrl}?cache=${Math.random()}`;
     },
