@@ -15,12 +15,13 @@ export default {
   name: 'render-map',
   props: [],
   mounted() {
+    this.stopUpdate();
   },
   data() {
     return {
       imageUrl: origUrl,
       interval: setInterval(this.updateImg, 5010),
-      checkInterval: false,
+      checkInterval: true,
     };
   },
   methods: {
