@@ -1,6 +1,6 @@
 <template lang="html">
   <!-- eslint-disable-next-line -->
-  <div class="title"  @click="updateImg();">2D Render</div>
+  <div class="title" style="padding-top: 7px;" @click="updateImg();">2D Render</div>
   <div class="render-box">
     <!-- eslint-disable-next-line -->
     <img @click="updateImg();" alt="render" class="render" :src="imageUrl">
@@ -38,12 +38,14 @@ export default {
 .render-box {
   display: flex;
   justify-content: center;
-  align-items: center;
+  padding: 20px;
+  height: 100%;
   width: 100%;
-  padding-top: 25px;
 }
 
 .render {
-  width: 415px;
+  width: 600px;
+  max-width: 80%;
+  max-height: 80%;
 }
 </style>
