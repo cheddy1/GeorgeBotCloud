@@ -2,7 +2,7 @@
   <div class="container-fluid no-mp">
     <div class="row no-mp">
       <div class="col no-mp">
-        <div class="top-left box">
+        <div class="left">
           <RenderMap />
         </div>
       </div>
@@ -11,15 +11,6 @@
           <!-- eslint-disable-next-line max-len -->
           <ControllerLiveFeed :feedArray="controllerFeedArray" :isFeedEmpty="controllerIsFeedEmpty"/>
         </div>
-      </div>
-    </div>
-    <div class="row no-mp">
-      <div class="col no-mp">
-        <div class="bot-left box">
-          <div class="loading-text"> Waiting on 3D data...</div>
-        </div>
-      </div>
-      <div class="col no-mp">
         <div class="bot-right box">
           <ROSLiveFeed :feedArray="rosFeedarray" :isFeedEmpty="rosIsFeedEmpty"/>
         </div>
@@ -106,34 +97,36 @@ export default {
 }
 
 .top-right {
-  border-left: 0px;
+  height: 46vh;
+  border-left: 2px;
   border-bottom: 2px;
   border-right: 0px;
   border-top: 0px;
   overflow: auto;
+  border-color: #494949;
+  border-style: solid;
+  display: flex;
+  flex-direction: column;
 }
 
-.top-left {
-  border-left: 0px;
-  border-bottom: 2px;
-  border-right: 2px;
-  border-top: 0px;
+.left {
+  height: 92vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .bot-right {
-  border: 0px;
+  height: 46vh;
+  border-left: 2px;
+  border-right: 0px;
+  border-top: 0px;
+  border-color: #494949;
+  border-style: solid;
   width: 50vw;
   bottom: 0px;
   overflow: auto;
-}
-
-.bot-left {
-  width: 50vw;
-  border-left: 0px;
-  border-bottom: 0px;
-  border-right: 2px;
-  border-top: 0px;
-  bottom: 0px;
+  display: flex;
+  flex-direction: column;
 }
 
 .feed-title {
@@ -142,11 +135,6 @@ export default {
 }
 
 .box {
-  height: 46vh;
-  border-color: #494949;
-  border-style: solid;
-  display: flex;
-  flex-direction: column;
 }
 
 .no-mp {
