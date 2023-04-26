@@ -120,6 +120,7 @@ export default {
   border-left: 2px;
   border-right: 0px;
   border-top: 0px;
+  border-bottom: 0px;
   border-color: #494949;
   border-style: solid;
   width: 50vw;
