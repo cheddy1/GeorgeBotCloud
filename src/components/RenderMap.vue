@@ -39,13 +39,13 @@ export default {
   display: flex;
   justify-content: center;
   padding: 20px;
-  height: 100%;
+  height: 42vh;
   width: 100%;
 }
 
 .render {
   width: 600px;
   max-width: 80%;
-  max-height: 80%;
+  max-height: 97%;
 }
 </style>
